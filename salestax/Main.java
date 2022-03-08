@@ -24,6 +24,7 @@ public class Main
     private static double import_tax_rate = .05;
     
     public static void main(String[] args)
+            throws Exception
     {
         createOrderList(); //Method creates orders
 
@@ -96,42 +97,47 @@ public class Main
     }
 
     public static void printInfo()
+        throws Exception
     {
+    	ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    	PrintStream out = new PrintStream(baos);
+
         //ensures that only two decimal places are shown
         DecimalFormat twoDecimals = new DecimalFormat("0.00");
 
-        System.out.println("Output 1");
+        out.println("Output 1");
         for(int i = 0; i < listOne.length; i++)
         {
-            System.out.println("1 "+listOne[i].getName()+": "+twoDecimals.format(listOne[i].getTotalcost()));
+            out.println("1 "+listOne[i].getName()+": "+twoDecimals.format(listOne[i].getTotalcost()));
         }
 
-        System.out.println("Sales Tax: "+twoDecimals.format(list_one_tax));
-        System.out.println("Total: "+twoDecimals.format(list_one_total_price));
+        out.println("Sales Tax: "+twoDecimals.format(list_one_tax));
+        out.println("Total: "+twoDecimals.format(list_one_total_price));
 
-        System.out.println("");
-        System.out.println("");
+        out.println("");
+        out.println("");
 
-        System.out.println("Output 2");
+        out.println("Output 2");
         for(int i = 0; i < listTwo.length; i++)
         {
-            System.out.println("1 "+listTwo[i].getName()+": "+twoDecimals.format(listTwo[i].getTotalcost()));
+            out.println("1 "+listTwo[i].getName()+": "+twoDecimals.format(listTwo[i].getTotalcost()));
         }
 
-        System.out.println("Sales Tax: "+twoDecimals.format(list_two_tax));
-        System.out.println("Total: "+twoDecimals.format(list_two_total_price));
+        out.println("Sales Tax: "+twoDecimals.format(list_two_tax));
+        out.println("Total: "+twoDecimals.format(list_two_total_price));
 
-        System.out.println("");
-        System.out.println("");
+        out.println("");
+        out.println("");
 
-        System.out.println("Output 3");
+        out.println("Output 3");
         for(int i = 0; i < listThree.length; i++)
         {
-            System.out.println("1 "+listThree[i].getName()+": "+twoDecimals.format(listThree[i].getTotalcost()));
+            out.println("1 "+listThree[i].getName()+": "+twoDecimals.format(listThree[i].getTotalcost()));
         }
 
-        System.out.println("Sales Tax: "+twoDecimals.format(list_three_tax));
-        System.out.println("Total: "+twoDecimals.format(list_three_total_price));
+        out.println("Sales Tax: "+twoDecimals.format(list_three_tax));
+        out.println("Total: "+twoDecimals.format(list_three_total_price));
 
+        System.out.println(baos.toString("UTF-8"));
     }
 }
