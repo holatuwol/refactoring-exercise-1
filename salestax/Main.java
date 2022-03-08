@@ -53,7 +53,7 @@ public class Main
             list_three_total_price = list_three_total_price + listThree[i].getTotalcost();
         }
         
-        printInfo(); //prints and formats output
+        System.out.println(printInfo()); //prints and formats output
     }
 
     //fills the list array by creating product for each index in the array
@@ -96,7 +96,7 @@ public class Main
         return total_tax;
     }
 
-    public static void printInfo()
+    public static String printInfo()
         throws Exception
     {
     	ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -138,6 +138,6 @@ public class Main
         out.println("Sales Tax: "+twoDecimals.format(list_three_tax));
         out.println("Total: "+twoDecimals.format(list_three_total_price));
 
-        System.out.println(baos.toString("UTF-8"));
+        return baos.toString("UTF-8");
     }
 }
