@@ -9,16 +9,8 @@ public class Main
 
     //Each list is an array of products that make up 1 order
     private static Order listOne = null;
-    private static double list_one_tax = 0;
-    private static double list_one_total_price = 0;
-
     private static Order listTwo = null;
-    private static double list_two_tax = 0;
-    private static double list_two_total_price = 0;
-
     private static Order listThree = null;
-    private static double list_three_tax = 0;
-    private static double list_three_total_price = 0;
 
     private static double basic_sales_tax_rate = .10;
     private static double import_tax_rate = .05;
@@ -29,30 +21,10 @@ public class Main
         createOrderList(); //Method creates orders
 
         //Sums up the total cost and total taxes due for a given order.
-        for(int i =  0; i < listOne.products.length; i++)
-        {
-            double current_product_tax  = calculateTax(listOne.products[i]);
-            listOne.products[i].setTax(current_product_tax);
-            list_one_tax = list_one_tax + listOne.products[i].getTax();
-            list_one_total_price = list_one_total_price + listOne.products[i].getTotalcost();
-        }
+        listOne.computeTaxAndPrice();
+        listTwo.computeTaxAndPrice();
+        listThree.computeTaxAndPrice();
 
-        for(int i =  0; i < listTwo.products.length; i++)
-        {
-            double current_product_tax  = calculateTax(listTwo.products[i]);
-            listTwo.products[i].setTax(current_product_tax);
-            list_two_tax = list_two_tax + listTwo.products[i].getTax();
-            list_two_total_price = list_two_total_price + listTwo.products[i].getTotalcost();
-        }
-
-        for(int i =  0; i < listThree.products.length; i++)
-        {
-            double current_product_tax  = calculateTax(listThree.products[i]);
-            listThree.products[i].setTax(current_product_tax);
-            list_three_tax = list_three_tax + listThree.products[i].getTax();
-            list_three_total_price = list_three_total_price + listThree.products[i].getTotalcost();
-        }
-        
         System.out.println(printInfo()); //prints and formats output
     }
 
@@ -114,8 +86,8 @@ public class Main
             out.println("1 "+listOne.products[i].getName()+": "+twoDecimals.format(listOne.products[i].getTotalcost()));
         }
 
-        out.println("Sales Tax: "+twoDecimals.format(list_one_tax));
-        out.println("Total: "+twoDecimals.format(list_one_total_price));
+        out.println("Sales Tax: "+twoDecimals.format(listOne.tax));
+        out.println("Total: "+twoDecimals.format(listOne.total_price));
 
         out.println("");
         out.println("");
@@ -126,8 +98,8 @@ public class Main
             out.println("1 "+listTwo.products[i].getName()+": "+twoDecimals.format(listTwo.products[i].getTotalcost()));
         }
 
-        out.println("Sales Tax: "+twoDecimals.format(list_two_tax));
-        out.println("Total: "+twoDecimals.format(list_two_total_price));
+        out.println("Sales Tax: "+twoDecimals.format(listTwo.tax));
+        out.println("Total: "+twoDecimals.format(listTwo.total_price));
 
         out.println("");
         out.println("");
@@ -138,8 +110,8 @@ public class Main
             out.println("1 "+listThree.products[i].getName()+": "+twoDecimals.format(listThree.products[i].getTotalcost()));
         }
 
-        out.println("Sales Tax: "+twoDecimals.format(list_three_tax));
-        out.println("Total: "+twoDecimals.format(list_three_total_price));
+        out.println("Sales Tax: "+twoDecimals.format(listThree.tax));
+        out.println("Total: "+twoDecimals.format(listThree.total_price));
 
         return baos.toString("UTF-8");
     }
