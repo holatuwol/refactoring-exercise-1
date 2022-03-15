@@ -33,23 +33,23 @@ public class Main
     {
         orders.add(
             new Order(
-            new Product("book", 12.49),
-            new Product("music cd", 14.99, BasicSalesTax.INSTANCE),
-            new Product("chocolate bar",0.85))
+                new Product("book", 12.49),
+                new Product("music cd", 14.99, BasicSalesTax.INSTANCE),
+                new Product("chocolate bar",0.85))
         );
 
         orders.add(
-                new Order(
-            new Product("imported box of chocolates",10.00, ImportTax.INSTANCE),
-            new Product("imported bottle of perfume",47.50, BasicSalesTax.INSTANCE, ImportTax.INSTANCE))
+            new Order(
+                new Product("imported box of chocolates",10.00, ImportTax.INSTANCE),
+                new Product("imported bottle of perfume",47.50, BasicSalesTax.INSTANCE, ImportTax.INSTANCE))
         );
 
         orders.add(
-                new Order(
-            new Product("imported bottle of perfume",27.99, BasicSalesTax.INSTANCE, ImportTax.INSTANCE),
-            new Product("bottle of perfume",18.99, BasicSalesTax.INSTANCE),
-            new Product("packet of headache pills",9.75),
-            new Product("box of imported chocolates",11.25, ImportTax.INSTANCE))
+            new Order(
+                new Product("imported bottle of perfume",27.99, BasicSalesTax.INSTANCE, ImportTax.INSTANCE),
+                new Product("bottle of perfume",18.99, BasicSalesTax.INSTANCE),
+                new Product("packet of headache pills",9.75),
+                new Product("box of imported chocolates",11.25, ImportTax.INSTANCE))
         );
     }
 
@@ -58,9 +58,6 @@ public class Main
     {
     	ByteArrayOutputStream baos = new ByteArrayOutputStream();
     	PrintStream out = new PrintStream(baos);
-
-        //ensures that only two decimal places are shown
-        DecimalFormat twoDecimals = new DecimalFormat("0.00");
 
         for (int i = 0; i < orders.size(); i++) {
             if (i != 0) {
