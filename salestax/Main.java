@@ -81,37 +81,19 @@ public class Main
         DecimalFormat twoDecimals = new DecimalFormat("0.00");
 
         out.println("Output 1");
-        for(int i = 0; i < listOne.products.length; i++)
-        {
-            out.println("1 "+listOne.products[i].getName()+": "+twoDecimals.format(listOne.products[i].getTotalcost()));
-        }
-
-        out.println("Sales Tax: "+twoDecimals.format(listOne.tax));
-        out.println("Total: "+twoDecimals.format(listOne.total_price));
+        listOne.printOrderDetails(out);
 
         out.println("");
         out.println("");
 
         out.println("Output 2");
-        for(int i = 0; i < listTwo.products.length; i++)
-        {
-            out.println("1 "+listTwo.products[i].getName()+": "+twoDecimals.format(listTwo.products[i].getTotalcost()));
-        }
-
-        out.println("Sales Tax: "+twoDecimals.format(listTwo.tax));
-        out.println("Total: "+twoDecimals.format(listTwo.total_price));
+        listTwo.printOrderDetails(out);
 
         out.println("");
         out.println("");
 
         out.println("Output 3");
-        for(int i = 0; i < listThree.products.length; i++)
-        {
-            out.println("1 "+listThree.products[i].getName()+": "+twoDecimals.format(listThree.products[i].getTotalcost()));
-        }
-
-        out.println("Sales Tax: "+twoDecimals.format(listThree.tax));
-        out.println("Total: "+twoDecimals.format(listThree.total_price));
+        listThree.printOrderDetails(out);
 
         return baos.toString("UTF-8");
     }
