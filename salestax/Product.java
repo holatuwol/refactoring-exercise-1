@@ -3,6 +3,10 @@ package salestax;
 
 public class Product
 {
+    private static double precision = 20; //Rounds value to .05
+    private static double basic_sales_tax_rate = .10;
+    private static double import_tax_rate = .05;
+
     private String product_name;
     private double tax_amount;    //Tax due on the product
     private double total_cost;    //Total cost of the product including tax
@@ -16,6 +20,29 @@ public class Product
         product_price = p_price;
         apply_basic_sales_tax = basic_sales_tax;
         apply_import_tax = import_tax;
+    }
+
+    //calculates the tax for a given product p
+    public static double calculateTax(Product p)
+    {
+        double sales_tax = 0;
+        double import_tax = 0;
+        double total_tax = 0;
+
+        //if basic sales tax applies
+        if(p.isTaxable() == true)
+        {
+            sales_tax = p.getPrice() * basic_sales_tax_rate;
+        }
+
+        //if import taxes apply
+        if(p.isImportedProduct() == true)
+        {
+           import_tax = p.getPrice() * import_tax_rate;
+        }
+        total_tax = sales_tax + import_tax;
+        total_tax = Math.floor(total_tax * precision +.5)/precision;
+        return total_tax;
     }
 
     //Returns the products name

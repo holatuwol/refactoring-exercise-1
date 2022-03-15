@@ -7,14 +7,10 @@ import java.util.List;
 
 public class Main
 {
-    private static double precision = 20; //Rounds value to .05
 
     //Each list is an array of products that make up 1 order
     private static List<Order> orders = new ArrayList<>();
 
-    private static double basic_sales_tax_rate = .10;
-    private static double import_tax_rate = .05;
-    
     public static void main(String[] args)
             throws Exception
     {
@@ -55,28 +51,6 @@ public class Main
             new Product("packet of headache pills",9.75, false, false),
             new Product("box of imported chocolates",11.25, false, true))
         );
-    }
-    //calculates the tax for a given product p
-    public static double calculateTax(Product p)
-    {
-        double sales_tax = 0;
-        double import_tax = 0;
-        double total_tax = 0;
-        
-        //if basic sales tax applies
-        if(p.isTaxable() == true)
-        {
-            sales_tax = p.getPrice() * basic_sales_tax_rate;
-        }
-
-        //if import taxes apply
-        if(p.isImportedProduct() == true)
-        {
-           import_tax = p.getPrice() * import_tax_rate;
-        }
-        total_tax = sales_tax + import_tax;
-        total_tax = Math.floor(total_tax * precision +.5)/precision;
-        return total_tax;
     }
 
     public static String printInfo()
