@@ -33,23 +33,23 @@ public class Main
     {
         orders.add(
             new Order(
-            new Product("book", 12.49,false,false),
-            new Product("music cd", 14.99, true, false),
-            new Product("chocolate bar",0.85, false, false))
+            new Product("book", 12.49),
+            new Product("music cd", 14.99, BasicSalesTax.INSTANCE),
+            new Product("chocolate bar",0.85))
         );
 
         orders.add(
                 new Order(
-            new Product("imported box of chocolates",10.00, false, true),
-            new Product("imported bottle of perfume",47.50, true, true))
+            new Product("imported box of chocolates",10.00, ImportTax.INSTANCE),
+            new Product("imported bottle of perfume",47.50, BasicSalesTax.INSTANCE, ImportTax.INSTANCE))
         );
 
         orders.add(
                 new Order(
-            new Product("imported bottle of perfume",27.99, true, true),
-            new Product("bottle of perfume",18.99, true, false),
-            new Product("packet of headache pills",9.75, false, false),
-            new Product("box of imported chocolates",11.25, false, true))
+            new Product("imported bottle of perfume",27.99, BasicSalesTax.INSTANCE, ImportTax.INSTANCE),
+            new Product("bottle of perfume",18.99, BasicSalesTax.INSTANCE),
+            new Product("packet of headache pills",9.75),
+            new Product("box of imported chocolates",11.25, ImportTax.INSTANCE))
         );
     }
 
