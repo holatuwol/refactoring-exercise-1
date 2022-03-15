@@ -20,12 +20,15 @@ public class Main
     {
         createOrderList(); //Method creates orders
 
-        //Sums up the total cost and total taxes due for a given order.
+        computeTaxAndPrice();
+
+        System.out.println(printInfo()); //prints and formats output
+    }
+
+    public static void computeTaxAndPrice() {
         for (Order order : orders) {
             order.computeTaxAndPrice();
         }
-
-        System.out.println(printInfo()); //prints and formats output
     }
 
     //fills the list array by creating product for each index in the array
