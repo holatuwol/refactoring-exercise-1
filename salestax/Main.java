@@ -2,15 +2,15 @@ package salestax;
 
 import java.io.*;
 import java.text.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main
 {
     private static double precision = 20; //Rounds value to .05
 
     //Each list is an array of products that make up 1 order
-    private static Order listOne = null;
-    private static Order listTwo = null;
-    private static Order listThree = null;
+    private static List<Order> orders = new ArrayList<>();
 
     private static double basic_sales_tax_rate = .10;
     private static double import_tax_rate = .05;
@@ -21,9 +21,9 @@ public class Main
         createOrderList(); //Method creates orders
 
         //Sums up the total cost and total taxes due for a given order.
-        listOne.computeTaxAndPrice();
-        listTwo.computeTaxAndPrice();
-        listThree.computeTaxAndPrice();
+        for (Order order : orders) {
+            order.computeTaxAndPrice();
+        }
 
         System.out.println(printInfo()); //prints and formats output
     }
@@ -32,21 +32,26 @@ public class Main
     //based on the input list provided
     public static void createOrderList()
     {
-        listOne = new Order(
+        orders.add(
+            new Order(
             new Product("book", 12.49,false,false),
             new Product("music cd", 14.99, true, false),
-            new Product("chocolate bar",0.85, false, false));
+            new Product("chocolate bar",0.85, false, false))
+        );
 
-        listTwo = new Order(
+        orders.add(
+                new Order(
             new Product("imported box of chocolates",10.00, false, true),
-            new Product("imported bottle of perfume",47.50, true, true));
+            new Product("imported bottle of perfume",47.50, true, true))
+        );
 
-        listThree = new Order(
+        orders.add(
+                new Order(
             new Product("imported bottle of perfume",27.99, true, true),
             new Product("bottle of perfume",18.99, true, false),
             new Product("packet of headache pills",9.75, false, false),
-            new Product("box of imported chocolates",11.25, false, true));
-
+            new Product("box of imported chocolates",11.25, false, true))
+        );
     }
     //calculates the tax for a given product p
     public static double calculateTax(Product p)
@@ -80,20 +85,16 @@ public class Main
         //ensures that only two decimal places are shown
         DecimalFormat twoDecimals = new DecimalFormat("0.00");
 
-        out.println("Output 1");
-        listOne.printOrderDetails(out);
+        for (int i = 0; i < orders.size(); i++) {
+            if (i != 0) {
+                out.println("");
+                out.println("");
+            }
 
-        out.println("");
-        out.println("");
+            out.println("Output " + (i+1));
 
-        out.println("Output 2");
-        listTwo.printOrderDetails(out);
-
-        out.println("");
-        out.println("");
-
-        out.println("Output 3");
-        listThree.printOrderDetails(out);
+            orders.get(i).printOrderDetails(out);
+        }
 
         return baos.toString("UTF-8");
     }
