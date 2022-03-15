@@ -23,22 +23,22 @@ public class Product
     }
 
     //calculates the tax for a given product p
-    public static double calculateTax(Product p)
+    public double calculateTax()
     {
         double sales_tax = 0;
         double import_tax = 0;
         double total_tax = 0;
 
         //if basic sales tax applies
-        if(p.isTaxable() == true)
+        if(isTaxable() == true)
         {
-            sales_tax = p.getPrice() * basic_sales_tax_rate;
+            sales_tax = getPrice() * basic_sales_tax_rate;
         }
 
         //if import taxes apply
-        if(p.isImportedProduct() == true)
+        if(isImportedProduct() == true)
         {
-           import_tax = p.getPrice() * import_tax_rate;
+           import_tax = getPrice() * import_tax_rate;
         }
         total_tax = sales_tax + import_tax;
         total_tax = Math.floor(total_tax * precision +.5)/precision;
