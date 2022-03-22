@@ -7,7 +7,6 @@ public class Product
 
     private String product_name;
     private double tax_amount;    //Tax due on the product
-    private double total_cost;    //Total cost of the product including tax
     private double product_price; //Product price before tax
 
     private Tax[] taxes;
@@ -60,8 +59,7 @@ public class Product
     //returns the total cost of the product including tax
     public double getTotalcost()
     {
-        total_cost = product_price + tax_amount;
-        return total_cost;
+        return product_price + tax_amount;
     }
 
 }
