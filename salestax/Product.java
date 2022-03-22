@@ -33,17 +33,15 @@ public class Product
     //returns the total tax on the product
     public double getTax()
     {
-        double total_tax = 0;
+        tax_amount = 0;
 
         for (Tax tax : taxes) {
-            total_tax += tax.getTax(getPrice());
+            tax_amount += tax.getTax(getPrice());
         }
 
-        total_tax = Math.floor(total_tax * precision +.5) / precision;
+        tax_amount = Math.floor(tax_amount * precision +.5) / precision;
 
-        tax_amount = total_tax;
-
-        return total_tax;
+        return tax_amount;
     }
 
     //returns the total cost of the product including tax

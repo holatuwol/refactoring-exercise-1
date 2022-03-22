@@ -10,8 +10,8 @@ public class Order {
 
     public void computeTaxAndPrice() {
         for (int i = 0; i < products.length; i++) {
-            tax = tax + products[i].getTax();
-            total_price = total_price + products[i].getTotalcost();
+            tax += products[i].getTax();
+            total_price += products[i].getTotalcost();
         }
     }
 
