@@ -49,7 +49,7 @@ public class Product
     //returns the total cost of the product including tax
     public double getTotalcost()
     {
-        return product_price + tax_amount;
+        return product_price + getTax();
     }
 
 }
